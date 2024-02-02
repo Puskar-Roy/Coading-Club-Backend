@@ -13,6 +13,27 @@ const userSchema = new Schema<User>(
       required: true,
       unique: true,
     },
+    department: {
+      type: String,
+      required: true,
+    },
+    rollno: {
+      type: Number,
+      required: true,
+    },
+    contactNumber: {
+      type: Number,
+      required: true,
+      unique: true,
+    },
+    currentStudyYear: {
+      type: Number,
+      required: true,
+    },
+    domain: {
+      type: String,
+      required: true,
+    },
     password: {
       type: String,
       required: true,

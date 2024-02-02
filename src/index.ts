@@ -24,7 +24,7 @@ app.use(express.json());
 
 import './database/connectDb';
 
-app.use('/api/auth', authRoutes);
+app.use('/api/v0.1/auth', authRoutes);
 
 app.get('/', (req: Request, res: Response) => {
   res.json({ success: true, message: 'API IS WORKING 🥳' });
