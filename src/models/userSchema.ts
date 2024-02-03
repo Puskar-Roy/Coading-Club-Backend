@@ -13,59 +13,38 @@ const userSchema = new Schema<User>(
       required: true,
       unique: true,
     },
-    department: {
+    googleId: {
       type: String,
       required: true,
     },
+    department: {
+      type: String,
+    },
     rollno: {
       type: Number,
-      required: true,
     },
     contactNumber: {
       type: Number,
-      required: true,
       unique: true,
     },
     currentStudyYear: {
       type: Number,
+    },
+    image: {
+      type: String,
       required: true,
     },
     domain: {
       type: String,
-      required: true,
     },
-    password: {
-      type: String,
+    isPaymentDone: {
+      type: Boolean,
       required: true,
-    },
-    cpassword: {
-      type: String,
-      required: true,
+      default: false,
     },
   },
   { timestamps: true }
 );
-
-userSchema.pre('save', async function (next) {
-  const user = this as User;
-
-  if (!user.isModified('password') && !user.isModified('cpassword'))
-    return next();
-  try {
-    const salt = await bcrypt.genSalt(10);
-    if (user.isModified('password')) {
-      const hashedPassword = await bcrypt.hash(user.password, salt);
-      user.password = hashedPassword;
-    }
-    if (user.isModified('cpassword')) {
-      const hashedCPassword = await bcrypt.hash(user.cpassword, salt);
-      user.cpassword = hashedCPassword;
-    }
-    return next();
-  } catch (error) {
-    return next(error);
-  }
-});
 
 const UserModel = model<User>('User', userSchema);
 

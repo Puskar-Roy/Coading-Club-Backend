@@ -7,6 +7,7 @@ export interface User extends Document {
   domain: string;
   contactNumber: number;
   currentStudyYear: number;
-  password: string;
-  cpassword: string;
+  isPaymentDone: boolean;
+  image: string;
+  googleId: string;
 }
